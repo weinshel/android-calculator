@@ -6,7 +6,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Created by weinshel on 5/22/15.
+ * Created by Ben Weinshel on 5/22/15.
+ * Does math
  */
 public class Maths {
     public static String doMath(String input) {
@@ -18,7 +19,6 @@ public class Maths {
     private static Stack<String> convertToPostfix(String input) {
 
         // TODO: unified list of operations
-        String operations = "-+/*^";
         Map<String, Integer> operationsMap = new HashMap<>();
         operationsMap.put("-", 1);
         operationsMap.put("+", 1);
@@ -42,8 +42,6 @@ public class Maths {
             if (token.isEmpty()) {
                 continue;
             }
-            char c = token.charAt(0); // first character of a token
-            // int operatorIndex = operations.indexOf(c);
 
             // if the token is an operator, try to do some stack stuff
             if (operationsMap.containsKey(token)) {
@@ -80,7 +78,6 @@ public class Maths {
                 stack.push(token);
             }
 
-            // TODO: fix ( 16 ^ 3 ) + 50 * 7 / ( 82 - 93 ) * 12
             else if (token.equals("(")) {
                 stack.push(token);
             }

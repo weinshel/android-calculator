@@ -5,7 +5,9 @@ import java.math.MathContext;
 import java.util.List;
 
 /**
- * Created by weinshel on 5/22/15.
+ * Created by Ben Weinshel on 5/22/15.
+ *
+ * Contains all the operations (+ - * / ^) to do math
  */
 public class Operations {
     public static BigDecimal addValues(List<BigDecimal> operationList) throws NumberFormatException {
