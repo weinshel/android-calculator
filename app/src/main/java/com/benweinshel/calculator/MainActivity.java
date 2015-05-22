@@ -1,6 +1,7 @@
 package com.benweinshel.calculator;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.res.Configuration;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -12,12 +13,15 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        EditText editTextField = (EditText) findViewById(R.id.editText);
+//        editTextField.setRawInputType(Configuration.KEYBOARD_QWERTY);
     }
 
     @Override
@@ -33,21 +37,11 @@ public class MainActivity extends ActionBarActivity {
         String input = inputEditText.getText().toString();
 
         // Do the calculation
-        String result = doAddition(input);
+        String result = Maths.doMath(input);
 
         TextView resultText = (TextView) findViewById(R.id.tvResult);
         resultText.setText(result);
         resultText.setVisibility(View.VISIBLE);
-    }
-
-    private String doAddition(String input) {
-        String[] separated = input.split("\\+");
-        Log.d("MainActivity", separated[0]);
-        int adder1 = Integer.parseInt(separated[0]);
-        int adder2 = Integer.parseInt(separated[1]);
-        int result = adder1 + adder2;
-        String resultString = Integer.toString(result);
-        return resultString;
     }
 
     @Override
