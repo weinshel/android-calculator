@@ -63,6 +63,12 @@ public class Maths {
         while (m.find()) {
             allTokens.add(m.group());
         }
+        if (allTokens.isEmpty()) {
+            return output;
+        }
+        else if (operationsMap.containsKey(allTokens.get(0))) {
+            throw new Exception("Error: unexpected " + allTokens.get(0));
+        }
 
         for (String token : allTokens) {
 
@@ -136,6 +142,10 @@ public class Maths {
     // Evaluates a postfix expression
     @DebugLog
     private static String evaluatePostfix(Stack<String> postfixIn) throws Exception {
+
+        if (postfixIn.isEmpty()) {
+            return null;
+        }
 
         Stack<String> reversedPostfix = new Stack<>();
         Stack<BigDecimal> stack = new Stack<>();
