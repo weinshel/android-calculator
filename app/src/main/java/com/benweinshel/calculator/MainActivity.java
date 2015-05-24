@@ -15,19 +15,23 @@ import org.w3c.dom.Text;
 
 import java.util.EmptyStackException;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
 
 
 public class MainActivity extends AppCompatActivity {
 
+    @InjectView(R.id.editText) EditText inputEditText;
+    @InjectView(R.id.tvResult) TextView resultText;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        EditText editTextField = (EditText) findViewById(R.id.editText);
-//        editTextField.setRawInputType(Configuration.KEYBOARD_QWERTY);
+        ButterKnife.inject(this);
     }
 
     @Override
@@ -39,13 +43,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void calculateResult(View view) {
         // do something
-        EditText inputEditText = (EditText) findViewById(R.id.editText);
         String input = inputEditText.getText().toString();
 
         // Do the calculation
         try {
             String result = Maths.doMath(input);
-            TextView resultText = (TextView) findViewById(R.id.tvResult);
             resultText.setText(result);
             resultText.setVisibility(View.VISIBLE);
         }
