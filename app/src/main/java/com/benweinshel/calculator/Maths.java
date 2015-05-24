@@ -32,7 +32,7 @@ public class Maths {
         // Match all of the possible tokens: either a number, an operator, or ()
         // and put it in an array list
         List<String> allTokens = new ArrayList<>();
-        Matcher m = Pattern.compile("[-\\+/*\\^\\(\\)]|-?\\d+(\\.\\d+)?").matcher(input);
+        Matcher m = Pattern.compile("[-\\+/*\\^\\(\\)]|-?\\d+(\\.\\d+)?|sin|cos|tan|arcsin|arccos|arctan").matcher(input);
         while (m.find()) {
             allTokens.add(m.group());
         }
@@ -78,7 +78,8 @@ public class Maths {
                 stack.push(token);
             }
 
-            else if (token.equals("(")) {
+            // if a left ( or a function, push the token directly to the stack
+            else if (token.matches("\\(|sin|cos|tan|arcsin|arccos|arctan")) {
                 stack.push(token);
             }
             else if (token.equals(")")) {
@@ -143,6 +144,13 @@ public class Maths {
                         break;
                     case "^":
                         stack.push(Operations.exponentiateValues(operationList));
+                        break;
+                }
+            }
+            else if (token.matches("sin|cos|tan|arcsin|arccos|arctan")) {
+                switch (token) {
+                    case "sin":
+                        stack.push(Operations.calculateSin(stack.pop()));
                         break;
                 }
             }

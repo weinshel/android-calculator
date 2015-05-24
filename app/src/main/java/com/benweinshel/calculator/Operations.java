@@ -43,4 +43,7 @@ public class Operations {
         BigDecimal d2 = operationList.get(1);
         return new BigDecimal(Math.pow(d2.doubleValue(), d1.doubleValue()));
     }
+    public static BigDecimal calculateSin(BigDecimal input) throws NumberFormatException {
+        return new BigDecimal(Math.sin(input.doubleValue()));
+    }
 }
