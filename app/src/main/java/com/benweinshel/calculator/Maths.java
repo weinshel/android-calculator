@@ -5,20 +5,47 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
+import hugo.weaving.DebugLog;
+
 /**
  * Created by Ben Weinshel on 5/22/15.
  * Does math
  */
 public class Maths {
-    public static String doMath(String input) {
+    public static String doMath(String input) throws Exception {
+
+        // Check for parenthesis errors before doing anything else:
+        checkParen(input);
         Stack<String> postfix = convertToPostfix(input);
         return evaluatePostfix(postfix);
     }
 
-    // Uses the shunting yard algorithm to generate a stack for the expression that is in postfix notation
-    private static Stack<String> convertToPostfix(String input) {
+    private static void checkParen(String input) throws Exception {
+        int parenCounter = 0;
+        for (char ch: input.toCharArray()) {
+            switch (ch) {
+                case '(':
+                    parenCounter++;
+                    break;
+                case ')':
+                    parenCounter--;
+                    break;
+            }
+            if (parenCounter == -1) {
+                throw new Exception("Error: parenthesis");
+            }
+        }
+        if (parenCounter != 0) {
+            throw new Exception("Error: parenthesis");
+        }
+    }
 
-        // TODO: unified list of operations
+    // Uses the shunting yard algorithm to generate a stack for the expression that is in postfix notation
+    @DebugLog
+    private static Stack<String> convertToPostfix(String input) throws Exception {
+
         Map<String, Integer> operationsMap = new HashMap<>();
         operationsMap.put("-", 1);
         operationsMap.put("+", 1);
@@ -86,7 +113,11 @@ public class Maths {
                 while (!stack.peek().equals("(")) {
                     output.push(stack.pop());
                 }
-                stack.pop();
+                try {
+                    stack.pop();
+                } catch (EmptyStackException e) {
+                    throw new Exception("Error: parenthesis");
+                }
             }
             // if the token is a number, push it to the output
             else { // if (operatorIndex = -1)
@@ -103,7 +134,8 @@ public class Maths {
     }
 
     // Evaluates a postfix expression
-    private static String evaluatePostfix(Stack<String> postfixIn) {
+    @DebugLog
+    private static String evaluatePostfix(Stack<String> postfixIn) throws Exception {
 
         Stack<String> reversedPostfix = new Stack<>();
         Stack<BigDecimal> stack = new Stack<>();
@@ -118,13 +150,15 @@ public class Maths {
                 BigDecimal bdToken = new BigDecimal(token);
                 stack.push(bdToken);
             }
-            // TODO: unified list of operations
             else if (token.matches("[-\\+/\\*\\^]")) {
                 List<BigDecimal> operationList = new ArrayList<>();
 
-                // TODO: error handling
                 for (int i = 1; i <=2; i++) {
-                    operationList.add(stack.pop());
+                    try {
+                        operationList.add(stack.pop());
+                    } catch (EmptyStackException e) {
+                        throw new Exception("Syntax error");
+                    }
                 }
 
                 switch (token) {
@@ -152,14 +186,34 @@ public class Maths {
                     case "sin":
                         stack.push(Operations.calculateSin(stack.pop()));
                         break;
+                    case "cos":
+                        stack.push(Operations.calculateCos(stack.pop()));
+                        break;
+                    case "tan":
+                        stack.push(Operations.calculateTan(stack.pop()));
+                        break;
+                    case "arcsin":
+                        stack.push(Operations.calculateASin(stack.pop()));
+                        break;
+                    case "arccos":
+                        stack.push(Operations.calculateACos(stack.pop()));
+                        break;
+                    case "arctan":
+                        stack.push(Operations.calculateATan(stack.pop()));
+                        break;
                 }
+            }
+            else {
+                throw new Exception("Syntax error");
             }
         }
 
         if (stack.size() == 1) {
             return stack.pop().toString();
         }
-        return "If you're reading this, there's been an error";
+        else {
+            throw new Exception("Syntax error");
+        }
     }
 
     private static boolean isNumeric(String str){

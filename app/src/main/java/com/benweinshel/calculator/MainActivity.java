@@ -13,6 +13,11 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.EmptyStackException;
+
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,11 +43,21 @@ public class MainActivity extends AppCompatActivity {
         String input = inputEditText.getText().toString();
 
         // Do the calculation
-        String result = Maths.doMath(input);
+        try {
+            String result = Maths.doMath(input);
+            TextView resultText = (TextView) findViewById(R.id.tvResult);
+            resultText.setText(result);
+            resultText.setVisibility(View.VISIBLE);
+        }
+        catch (Exception e) {
+            if (!e.getMessage().isEmpty()) {
+                Crouton.makeText(this, e.getMessage(), Style.ALERT).show();
+            }
+            else {
+                Crouton.makeText(this, e.toString(), Style.ALERT).show();
+            }
+        }
 
-        TextView resultText = (TextView) findViewById(R.id.tvResult);
-        resultText.setText(result);
-        resultText.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -71,5 +86,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         return result;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Crouton.cancelAllCroutons();
     }
 }
