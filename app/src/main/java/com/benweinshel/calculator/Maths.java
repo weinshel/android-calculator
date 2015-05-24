@@ -192,25 +192,29 @@ public class Maths {
                 }
             }
             else if (token.matches("sin|cos|tan|arcsin|arccos|arctan")) {
-                switch (token) {
-                    case "sin":
-                        stack.push(Operations.calculateSin(stack.pop()));
-                        break;
-                    case "cos":
-                        stack.push(Operations.calculateCos(stack.pop()));
-                        break;
-                    case "tan":
-                        stack.push(Operations.calculateTan(stack.pop()));
-                        break;
-                    case "arcsin":
-                        stack.push(Operations.calculateASin(stack.pop()));
-                        break;
-                    case "arccos":
-                        stack.push(Operations.calculateACos(stack.pop()));
-                        break;
-                    case "arctan":
-                        stack.push(Operations.calculateATan(stack.pop()));
-                        break;
+                try {
+                    switch (token) {
+                        case "sin":
+                            stack.push(Operations.calculateSin(stack.pop()));
+                            break;
+                        case "cos":
+                            stack.push(Operations.calculateCos(stack.pop()));
+                            break;
+                        case "tan":
+                            stack.push(Operations.calculateTan(stack.pop()));
+                            break;
+                        case "arcsin":
+                            stack.push(Operations.calculateASin(stack.pop()));
+                            break;
+                        case "arccos":
+                            stack.push(Operations.calculateACos(stack.pop()));
+                            break;
+                        case "arctan":
+                            stack.push(Operations.calculateATan(stack.pop()));
+                            break;
+                    }
+                } catch (EmptyStackException e) {
+                    throw new Exception("Syntax error: nothing to calculate \u201c" + token + "\u201d of");
                 }
             }
             else {
