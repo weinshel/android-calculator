@@ -2,8 +2,8 @@
     <string name="app_name">Calculator</string>
 
     <string name="action_about">About</string>
-    <string name="input">Type a problem</string>
-    <string name="calculate_button">Calculate</string>
+    <string name="input_text">Type a problem</string>
+    <string name="calc_button">Calculate</string>
     <string name="title_activity_about">About</string>
 
     <string name="about_text">This app was created by Ben Weinshel</string>

@@ -1,9 +1,12 @@
 package com.benweinshel.calculator;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +28,12 @@ public class MainActivity extends AppCompatActivity {
 
     @InjectView(R.id.editText) EditText inputEditText;
     @InjectView(R.id.tvResult) TextView resultText;
+    @InjectView(R.id.result_text) TextView resultTextCard;
+    @InjectView(R.id.my_recycler_view) RecyclerView mRecyclerView;
+
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+
 
 
     @Override
@@ -32,6 +41,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
+
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        mRecyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        // specify an adapter (see also next example)
+        mAdapter = new MyAdapter(myDataset);
+        mRecyclerView.setAdapter(mAdapter);
+
     }
 
     @Override
@@ -48,8 +70,7 @@ public class MainActivity extends AppCompatActivity {
         // Do the calculation
         try {
             String result = Maths.doMath(input);
-            resultText.setText(result);
-            resultText.setVisibility(View.VISIBLE);
+            resultTextCard.setText(result);
         }
         catch (Exception e) {
             if (!e.getMessage().isEmpty()) {
