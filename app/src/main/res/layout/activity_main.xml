@@ -15,28 +15,16 @@
             android:id="@+id/my_recycler_view"
             android:scrollbars="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="200dp"/>
-
-        <android.support.v7.widget.CardView
-            xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/card_view"
-            android:layout_gravity="center"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            card_view:cardCornerRadius="2dp"
-            card_view:contentPadding="10dp">
-
-            <TextView
-                android:id="@+id/result_text"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Result"/>
-        </android.support.v7.widget.CardView>
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            tools:listitem="@layout/my_text_view"/>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:layout_below="@id/my_recycler_view">
 
             <EditText
                 android:layout_height="wrap_content"
@@ -63,13 +51,6 @@
                 android:layout_alignParentEnd="true"
                 android:onClick="calculateResult"/>
         </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvResult"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
 
     </LinearLayout>
 

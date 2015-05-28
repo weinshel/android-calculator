@@ -16,7 +16,9 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.EmptyStackException;
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -27,14 +29,12 @@ import de.keyboardsurfer.android.widget.crouton.Style;
 public class MainActivity extends AppCompatActivity {
 
     @InjectView(R.id.editText) EditText inputEditText;
-    @InjectView(R.id.tvResult) TextView resultText;
-    @InjectView(R.id.result_text) TextView resultTextCard;
     @InjectView(R.id.my_recycler_view) RecyclerView mRecyclerView;
 
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-
+    List<Calculation> calculations = new ArrayList<Calculation>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new MyAdapter(myDataset);
+        mAdapter = new RecyclerViewAdapter(calculations);
         mRecyclerView.setAdapter(mAdapter);
 
     }
@@ -70,7 +70,11 @@ public class MainActivity extends AppCompatActivity {
         // Do the calculation
         try {
             String result = Maths.doMath(input);
-            resultTextCard.setText(result);
+            Calculation c = new Calculation(input, result);
+            int calcSize = calculations.size();
+            calculations.add(c);
+            mAdapter.notifyItemInserted(calcSize);
+            mRecyclerView.scrollToPosition(calcSize);
         }
         catch (Exception e) {
             if (!e.getMessage().isEmpty()) {
@@ -88,11 +92,14 @@ public class MainActivity extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_about) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_about:
+                return true;
+            case R.id.action_clear_hist:
+                calculations.clear();
+                mAdapter.notifyDataSetChanged();
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
