@@ -16,7 +16,7 @@ import butterknife.InjectView;
  * Created by bmweinshel15 on 5/26/15.
  */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
-    private List<Calculation> mDataset;
+    private List<CalculationLog> mDataset;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -34,7 +34,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     // class constructor
-    public RecyclerViewAdapter(List<Calculation> myDataset) {
+    public RecyclerViewAdapter(List<CalculationLog> myDataset) {
         mDataset = myDataset;
     }
 
@@ -53,7 +53,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        Calculation model = mDataset.get(position);
+        CalculationLog model = mDataset.get(position);
         holder.input.setText(model.input);
         holder.result.setText(model.result);
     }

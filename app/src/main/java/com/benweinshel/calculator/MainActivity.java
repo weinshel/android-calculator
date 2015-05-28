@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    List<Calculation> calculations = new ArrayList<Calculation>();
+    List<CalculationLog> calculations = new ArrayList<CalculationLog>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         // Do the calculation
         try {
             String result = Maths.doMath(input);
-            Calculation c = new Calculation(input, result);
+            CalculationLog c = new CalculationLog(input, result);
             int calcSize = calculations.size();
             calculations.add(c);
             mAdapter.notifyItemInserted(calcSize);
