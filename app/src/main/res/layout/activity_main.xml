@@ -39,6 +39,7 @@
 
     <!-- 7, 8, and 9-->
     <Button
+        android:onClick="buttonPressed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button7"
@@ -47,6 +48,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
     <Button
+        android:onClick="buttonPressed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button8"
@@ -54,6 +56,7 @@
         android:layout_alignBottom="@+id/button7"
         android:layout_toEndOf="@+id/button7" />
     <Button
+        android:onClick="buttonPressed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button9"
@@ -63,12 +66,14 @@
 
     <!-- 4, 5, and 6-->
     <Button
+        android:onClick="buttonPressed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button4"
         android:id="@+id/button4"
         android:layout_below="@id/button7" />
     <Button
+        android:onClick="buttonPressed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button5"
@@ -76,6 +81,7 @@
         android:layout_alignBottom="@+id/button4"
         android:layout_toEndOf="@+id/button4" />
     <Button
+        android:onClick="buttonPressed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button6"
@@ -85,12 +91,14 @@
 
     <!-- 1, 2, and 3-->
     <Button
+        android:onClick="buttonPressed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button1"
         android:id="@+id/button1"
         android:layout_below="@id/button4" />
     <Button
+        android:onClick="buttonPressed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button2"
@@ -98,6 +106,7 @@
         android:layout_alignBottom="@+id/button1"
         android:layout_toEndOf="@+id/button1" />
     <Button
+        android:onClick="buttonPressed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button3"
@@ -107,18 +116,21 @@
 
     <!-- . 0 = -->
     <Button
+        android:onClick="buttonPressed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button0"
         android:layout_below="@id/button2"
         android:layout_alignStart="@id/button2"/>
     <Button
+        android:onClick="buttonPressed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_decimal"
         android:layout_below="@id/button1"
         android:layout_alignStart="@id/button1"/>
     <Button
+        android:onClick="calculateResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_equals"
