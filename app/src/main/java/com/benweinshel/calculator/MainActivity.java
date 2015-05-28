@@ -64,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void calculateResult(View view) {
-        // do something
         String input = inputEditText.getText().toString();
 
         // Do the calculation
@@ -84,6 +83,10 @@ public class MainActivity extends AppCompatActivity {
                 Crouton.makeText(this, e.toString(), Style.ALERT).show();
             }
         }
+
+    }
+
+    public void buttonPressed(View view) {
 
     }
 

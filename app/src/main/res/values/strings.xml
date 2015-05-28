@@ -8,4 +8,28 @@
     <string name="title_activity_about">About</string>
 
     <string name="about_text">This app was created by Ben Weinshel</string>
+
+    <string name="button0">0</string>
+    <string name="button1">1</string>
+    <string name="button2">2</string>
+    <string name="button3">3</string>
+    <string name="button4">4</string>
+    <string name="button5">5</string>
+    <string name="button6">6</string>
+    <string name="button7">7</string>
+    <string name="button8">8</string>
+    <string name="button9">9</string>
+    <string name="button_decimal">.</string>
+    <string name="button_equals">=</string>
+    <string name="button_plus">+</string>
+    <string name="button_minus">-</string>
+    <string name="button_times">*</string>
+    <string name="button_div">/</string>
+    <string name="button_exp">^</string>
+    <string name="button_sin">sin</string>
+    <string name="button_cos">cos</string>
+    <string name="button_tan">tan</string>
+    <string name="button_asin">arcsin</string>
+    <string name="button_acos">arccos</string>
+    <string name="button_atan">arctan</string>
 </resources>
