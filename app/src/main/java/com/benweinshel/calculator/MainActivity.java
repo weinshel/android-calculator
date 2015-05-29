@@ -1,8 +1,11 @@
 package com.benweinshel.calculator;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.hardware.input.InputManager;
+import android.os.IBinder;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +16,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -44,7 +48,11 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.inject(this);
 
         inputEditText.setErrorEnabled(true);
-        inputEditText.setHint("Type a problem");
+        inputEditText.requestFocus();
+        IBinder wt = inputEditText.getWindowToken();
+        InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        in.hideSoftInputFromInputMethod(wt, 0);
+        //inputEditText.getEditText().setInputType(null);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
