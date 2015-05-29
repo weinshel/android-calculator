@@ -31,3 +31,4 @@ proguard/
 /.idea/libraries
 .DS_Store
 /captures
+.navigation/app/raw/main.nvg.xml
