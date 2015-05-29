@@ -78,6 +78,7 @@ public class Maths {
             throw new Exception("Error: unexpected ‟" + allTokens.get(0) + "”");
         }
 
+        String prevToken = "";
         for (String token : allTokens) {
 
             if (token.isEmpty()) {
@@ -89,9 +90,15 @@ public class Maths {
 
                 while (stack.size() > 0) {
 
+                    String prev = stack.peek();
+
+                    // handle an error where two consecutive operators are typed in
+                    if (operationsMap.containsKey(prevToken)) {
+                        throw new Exception("Two consecutive operators: ‟" + prev + "” and ‟" + token + "”");
+                    }
+
                     // left-associative operations
                     if (token.equals("-") || token.equals("+") || token.equals("÷") || token.equals("×")) {
-                        String prev = stack.peek();
                         if (prev.equals("(")) {
                             break;
                         }
@@ -104,7 +111,6 @@ public class Maths {
                     }
                     // right-associative operations
                     else if (token.equals("^")) {
-                        String prev = stack.peek();
                         if (prev.equals("(")) {
                             break;
                         }
@@ -120,7 +126,7 @@ public class Maths {
             }
 
             // if a left ( or a function, push the token directly to the stack
-            else if (token.matches("\\(|sin|cos|tan|arcsin|arccos|arctan")) {
+            else if (token.matches("|sin|cos|tan|arcsin|arccos|arctan")) {
                 stack.push(token);
             }
             else if (token.equals(")")) {
@@ -133,10 +139,19 @@ public class Maths {
                     throw new Exception("Parenthesis error");
                 }
             }
+            else if (token.equals("(")) {
+                if (isNumeric(prevToken) || prevToken.equals(")")) {
+                    stack.push("×");
+                }
+                stack.push(token);
+            }
             // if the token is a number, push it to the output
             else { // if (operatorIndex = -1)
                 output.push(token);
             }
+
+            // store the previous token to check for implied multiply with ()
+            prevToken = token;
         }
 
         // clear out the stack
@@ -173,18 +188,12 @@ public class Maths {
 
                 switch (stack.size()) {
                     case 0:
-
+                        throw new Exception("Syntax error: nothing to operate ‟" + token + "” on");
                     case 1:
-                        throw new Exception("Syntax error: unable to operate ‟" + token + "” on only ‟" + stack.peek());
+                        throw new Exception("Syntax error: unable to operate ‟" + token + "” on only ‟" + stack.peek() + "”");
                 }
-
-                else if (stack.size() == 0)
                 for (int i = 1; i <=2; i++) {
-                    try {
-                        operationList.add(stack.pop());
-                    } catch (EmptyStackException e) {
-                        throw new Exception("Syntax error: unable to operate ‟" + token + "” on only ‟" + operationList.);
-                    }
+                    operationList.add(stack.pop());
                 }
 
                 switch (token) {
