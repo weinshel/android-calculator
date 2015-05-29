@@ -19,20 +19,19 @@
         android:layout_alignParentTop="true"/>
 
     <!-- Input Box-->
-    <TextView
+    <android.support.design.widget.TextInputLayout
         android:id="@+id/editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:hint="@string/input_text"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_above="@+id/row5"
         android:paddingBottom="15dp"
         android:paddingTop="15dp"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"/>
 
 
-    <!-- 7, 8, 9, and /-->
+
+    <!-- sin, (, ), and DEL -->
     <LinearLayout
         android:id="@+id/row5"
         android:layout_width="fill_parent"
@@ -68,7 +67,7 @@
             android:id="@+id/button_del"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:onClick="buttonPressed"
+            android:onClick="delPressed"
             android:text="@string/button_del"
             android:layout_weight="1"/>
     </LinearLayout>

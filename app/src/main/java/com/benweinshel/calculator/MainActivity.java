@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,10 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.EmptyStackException;
 import java.util.List;
 
 import butterknife.ButterKnife;
@@ -30,7 +28,7 @@ import de.keyboardsurfer.android.widget.crouton.Style;
 
 public class MainActivity extends AppCompatActivity {
 
-    @InjectView(R.id.editText) TextView inputEditText;
+    @InjectView(R.id.editText) TextInputLayout inputEditText;
     @InjectView(R.id.my_recycler_view) RecyclerView mRecyclerView;
 
     private RecyclerView.Adapter mAdapter;
@@ -41,8 +39,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
+
+        inputEditText.setErrorEnabled(true);
+        inputEditText.setHint("Type a problem");
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -67,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void calculateResult(View view) {
 
-        String input = inputEditText.getText().toString();
+        String input = inputEditText.getEditText().getText().toString();
 
         // Do the calculation
         try {
@@ -75,13 +77,15 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             if (!e.getMessage().isEmpty()) {
                 CharSequence message = (CharSequence) e.getMessage();
-                Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG);
-                snackbar.show();
+                inputEditText.setError(message);
+//                Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG);
+//                snackbar.show();
             }
             else {
-                CharSequence error = (CharSequence) e.getMessage();
-                Snackbar snackbar = Snackbar.make(view, error, Snackbar.LENGTH_LONG);
-                snackbar.show();
+                CharSequence error = (CharSequence) e;
+                inputEditText.setError(error);
+//                Snackbar snackbar = Snackbar.make(view, error, Snackbar.LENGTH_LONG);
+//                snackbar.show();
             }
         }
 
@@ -100,13 +104,12 @@ public class MainActivity extends AppCompatActivity {
     public void buttonPressed(View view) {
         Button b = (Button) view;
         CharSequence buttonText = b.getText();
-        switch (buttonText.toString()) {
-            case "del":
-                String text = inputEditText.getText().toString();
-                inputEditText.setText(text.substring(0, text.length() - 1));
-                break;
-            default:
-                inputEditText.append(buttonText);
+        inputEditText.getEditText().append(buttonText);
+    }
+    public void delPressed (View view) {
+        int length = inputEditText.getEditText().getText().length();
+        if (length > 0) {
+            inputEditText.getEditText().getText().delete(length - 1, length);
         }
     }
 
