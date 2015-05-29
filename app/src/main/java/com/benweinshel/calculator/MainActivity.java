@@ -3,6 +3,7 @@ package com.benweinshel.calculator;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -69,37 +70,37 @@ public class MainActivity extends AppCompatActivity {
         String input = inputEditText.getText().toString();
 
         // Do the calculation
-        doResult(input);
+        try {
+            doResult(input);
+        } catch (Exception e) {
+            if (!e.getMessage().isEmpty()) {
+                CharSequence message = (CharSequence) e.getMessage();
+                Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG);
+                snackbar.show();
+            }
+            else {
+                CharSequence error = (CharSequence) e.getMessage();
+                Snackbar snackbar = Snackbar.make(view, error, Snackbar.LENGTH_LONG);
+                snackbar.show();
+            }
+        }
 
     }
 
-    private void doResult(String input) {
+    private void doResult(String input) throws Exception{
 
-        try {
-            String result = Maths.doMath(input);
-            CalculationLog c = new CalculationLog(input, result);
-            int calcSize = calculations.size();
-            calculations.add(c);
-            mAdapter.notifyItemInserted(calcSize);
-            mRecyclerView.scrollToPosition(calcSize);
-        }
-        catch (Exception e) {
-            if (!e.getMessage().isEmpty()) {
-                Crouton.makeText(this, e.getMessage(), Style.ALERT).show();
-            }
-            else {
-                Crouton.makeText(this, e.toString(), Style.ALERT).show();
-            }
-        }
+        String result = Maths.doMath(input);
+        CalculationLog c = new CalculationLog(input, result);
+        int calcSize = calculations.size();
+        calculations.add(c);
+        mAdapter.notifyItemInserted(calcSize);
+        mRecyclerView.scrollToPosition(calcSize);
     }
 
     public void buttonPressed(View view) {
         Button b = (Button) view;
         CharSequence buttonText = b.getText();
         switch (buttonText.toString()) {
-            case "=":
-                doResult(inputEditText.getText().toString());
-                break;
             case "del":
                 String text = inputEditText.getText().toString();
                 inputEditText.setText(text.substring(0, text.length() - 1));

@@ -24,6 +24,7 @@ public class Maths {
 
     private static void checkParen(String input) throws Exception {
         int parenCounter = 0;
+        boolean unbalanced = false;
         for (char ch: input.toCharArray()) {
             switch (ch) {
                 case '(':
@@ -34,11 +35,18 @@ public class Maths {
                     break;
             }
             if (parenCounter == -1) {
-                throw new Exception("Error: parenthesis");
+                unbalanced = true;
             }
         }
-        if (parenCounter != 0) {
-            throw new Exception("Error: parenthesis");
+
+        if (parenCounter < 0) {
+            throw new Exception("Syntax error: more parenthesis closed than opened");
+        }
+        else if (parenCounter > 0) {
+            throw new Exception("Syntax error: more parenthesis opened than closed");
+        }
+        else if (unbalanced) {
+            throw new Exception("Syntax error: unbalanced parenthesis");
         }
     }
 
@@ -67,7 +75,7 @@ public class Maths {
             return output;
         }
         else if (operationsMap.containsKey(allTokens.get(0))) {
-            throw new Exception("Error: unexpected " + allTokens.get(0));
+            throw new Exception("Error: unexpected ‟" + allTokens.get(0) + "”");
         }
 
         for (String token : allTokens) {
@@ -122,7 +130,7 @@ public class Maths {
                 try {
                     stack.pop();
                 } catch (EmptyStackException e) {
-                    throw new Exception("Error: parenthesis");
+                    throw new Exception("Parenthesis error");
                 }
             }
             // if the token is a number, push it to the output
@@ -163,11 +171,19 @@ public class Maths {
             else if (token.matches("[-\\+÷×\\^]")) {
                 List<BigDecimal> operationList = new ArrayList<>();
 
+                switch (stack.size()) {
+                    case 0:
+
+                    case 1:
+                        throw new Exception("Syntax error: unable to operate ‟" + token + "” on only ‟" + stack.peek());
+                }
+
+                else if (stack.size() == 0)
                 for (int i = 1; i <=2; i++) {
                     try {
                         operationList.add(stack.pop());
                     } catch (EmptyStackException e) {
-                        throw new Exception("Syntax error");
+                        throw new Exception("Syntax error: unable to operate ‟" + token + "” on only ‟" + operationList.);
                     }
                 }
 
@@ -218,7 +234,7 @@ public class Maths {
                 }
             }
             else {
-                throw new Exception("Syntax error");
+                throw new Exception("Syntax error: unrecognized input ‟" + token + "”" );
             }
         }
 
@@ -226,7 +242,7 @@ public class Maths {
             return stack.pop().toString();
         }
         else {
-            throw new Exception("Syntax error");
+            throw new Exception("Syntax error: insufficient operators");
         }
     }
 
