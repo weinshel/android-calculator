@@ -49,8 +49,8 @@ public class Maths {
         Map<String, Integer> operationsMap = new HashMap<>();
         operationsMap.put("-", 1);
         operationsMap.put("+", 1);
-        operationsMap.put("/", 2);
-        operationsMap.put("*", 2);
+        operationsMap.put("×", 2);
+        operationsMap.put("÷", 2);
         operationsMap.put("^", 3);
 
         Stack<String> stack = new Stack<>();
@@ -59,7 +59,7 @@ public class Maths {
         // Match all of the possible tokens: either a number, an operator, or ()
         // and put it in an array list
         List<String> allTokens = new ArrayList<>();
-        Matcher m = Pattern.compile("[-\\+/*\\^\\(\\)]|-?\\d+(\\.\\d+)?|sin|cos|tan|arcsin|arccos|arctan").matcher(input);
+        Matcher m = Pattern.compile("[-\\+÷×\\^\\(\\)]|-?\\d+(\\.\\d+)?|sin|cos|tan|arcsin|arccos|arctan").matcher(input);
         while (m.find()) {
             allTokens.add(m.group());
         }
@@ -82,7 +82,7 @@ public class Maths {
                 while (stack.size() > 0) {
 
                     // left-associative operations
-                    if (token.equals("-") || token.equals("+") || token.equals("/") || token.equals("*")) {
+                    if (token.equals("-") || token.equals("+") || token.equals("÷") || token.equals("×")) {
                         String prev = stack.peek();
                         if (prev.equals("(")) {
                             break;
@@ -160,7 +160,7 @@ public class Maths {
                 BigDecimal bdToken = new BigDecimal(token);
                 stack.push(bdToken);
             }
-            else if (token.matches("[-\\+/\\*\\^]")) {
+            else if (token.matches("[-\\+÷×\\^]")) {
                 List<BigDecimal> operationList = new ArrayList<>();
 
                 for (int i = 1; i <=2; i++) {
@@ -178,11 +178,11 @@ public class Maths {
                     case "-":
                         stack.push(Operations.subtractValues(operationList));
                         break;
-                    case "*":
+                    case "×":
                         BigDecimal multResult = Operations.multiplyValues(operationList);
                         stack.push(multResult);
                         break;
-                    case "/":
+                    case "÷":
                         BigDecimal divResult = Operations.divideValues(operationList);
                         stack.push(divResult);
                         break;

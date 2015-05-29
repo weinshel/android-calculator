@@ -23,8 +23,8 @@
     <string name="button_equals">=</string>
     <string name="button_plus">+</string>
     <string name="button_minus">-</string>
-    <string name="button_times">*</string>
-    <string name="button_div">/</string>
+    <string name="button_times">×</string>
+    <string name="button_div">÷</string>
     <string name="button_exp">^</string>
     <string name="button_sin">sin</string>
     <string name="button_cos">cos</string>
@@ -32,4 +32,7 @@
     <string name="button_asin">arcsin</string>
     <string name="button_acos">arccos</string>
     <string name="button_atan">arctan</string>
+    <string name="button_del">del</string>
+    <string name="button_lp">(</string>
+    <string name="button_rp">)</string>
 </resources>

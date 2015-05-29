@@ -29,7 +29,7 @@ import de.keyboardsurfer.android.widget.crouton.Style;
 
 public class MainActivity extends AppCompatActivity {
 
-    @InjectView(R.id.editText) EditText inputEditText;
+    @InjectView(R.id.editText) TextView inputEditText;
     @InjectView(R.id.my_recycler_view) RecyclerView mRecyclerView;
 
     private RecyclerView.Adapter mAdapter;
@@ -65,9 +65,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void calculateResult(View view) {
+
         String input = inputEditText.getText().toString();
 
         // Do the calculation
+        doResult(input);
+
+    }
+
+    private void doResult(String input) {
+
         try {
             String result = Maths.doMath(input);
             CalculationLog c = new CalculationLog(input, result);
@@ -84,13 +91,22 @@ public class MainActivity extends AppCompatActivity {
                 Crouton.makeText(this, e.toString(), Style.ALERT).show();
             }
         }
-
     }
 
     public void buttonPressed(View view) {
         Button b = (Button) view;
         CharSequence buttonText = b.getText();
-        inputEditText.append(buttonText);
+        switch (buttonText.toString()) {
+            case "=":
+                doResult(inputEditText.getText().toString());
+                break;
+            case "del":
+                String text = inputEditText.getText().toString();
+                inputEditText.setText(text.substring(0, text.length() - 1));
+                break;
+            default:
+                inputEditText.append(buttonText);
+        }
     }
 
     @Override
