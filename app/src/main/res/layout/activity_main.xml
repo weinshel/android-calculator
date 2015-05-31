@@ -2,54 +2,67 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="0dp"
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
-    tools:context=".MainActivity"
-    android:orientation="vertical">
+    tools:context=".MainActivity">
 
     <!-- Recycler View-->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/my_recycler_view"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
+        android:layout_weight="1"
         android:background="@color/result_background"
         android:elevation="4dp"
-        android:scrollbars="vertical"
-        tools:listitem="@layout/my_text_view"
-        android:layout_weight="1"
+        android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:scrollbars="vertical"
+        tools:listitem="@layout/my_text_view"
         />
 
-    <!-- Input Box-->
-    <android.support.design.widget.TextInputLayout
+    <!--&lt;!&ndash; Input Box&ndash;&gt;-->
+    <!--<android.support.design.widget.TextInputLayout-->
+        <!--android:id="@+id/editText"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@color/button_background"-->
+        <!--android:paddingLeft="@dimen/activity_horizontal_margin"-->
+        <!--android:paddingRight="@dimen/activity_horizontal_margin"-->
+        <!--android:elevation="0dp">-->
+
+        <!--<EditText-->
+            <!--android:id="@+id/editTextEditText"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:cursorVisible="true"-->
+            <!--android:hint="@string/input_text"-->
+            <!--android:textColor="@color/input_text_color"/>-->
+
+    <!--</android.support.design.widget.TextInputLayout>-->
+
+    <EditText
         android:id="@+id/editText"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/button_background"
+        android:layout_gravity="center"
+      android:background="@color/input_background"
+      android:cursorVisible="true"
+      android:elevation="2dp"
+      android:hint="@string/input_text"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:elevation="0dp">
-
-        <EditText
-            android:id="@+id/editTextEditText"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:cursorVisible="true"
-            android:hint="@string/input_text"
-            android:textColor="@color/input_text_color"/>
-
-    </android.support.design.widget.TextInputLayout>
+        android:textColor="@color/input_text_color"/>
 
 
     <include
-        layout="@layout/buttons"
         android:id="@+id/buttons"
+        layout="@layout/buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="0dp"/>

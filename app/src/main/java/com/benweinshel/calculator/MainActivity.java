@@ -35,7 +35,7 @@ import de.keyboardsurfer.android.widget.crouton.Style;
 
 public class MainActivity extends AppCompatActivity {
 
-    @InjectView(R.id.editText) TextInputLayout inputEditText;
+    @InjectView(R.id.editText) EditText inputEditText;
     @InjectView(R.id.my_recycler_view) RecyclerView mRecyclerView;
 
     private RecyclerView.Adapter mAdapter;
@@ -50,9 +50,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
 
-        inputEditText.setErrorEnabled(true);
+     //   inputEditText.setErrorEnabled(true);
         inputEditText.requestFocus();
-        inputEditText.getEditText().setOnTouchListener(otl);
+    //    inputEditText.getEditText().setOnTouchListener(otl);
+        inputEditText.setOnTouchListener(otl);
 
 //        IBinder wt = inputEditText.getWindowToken();
 //        InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -101,7 +102,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void calculateResult(View view) {
 
-        String input = inputEditText.getEditText().getText().toString();
+       //String input = inputEditText.getEditText().getText().toString();
+        String input = inputEditText.getText().toString();
         if (input.isEmpty()) {
             return;
         }
@@ -112,15 +114,15 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             if (!e.getMessage().isEmpty()) {
                 CharSequence message = (CharSequence) e.getMessage();
-                inputEditText.setError(message);
-//                Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG);
-//                snackbar.show();
+        //        inputEditText.setError(message);
+                Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG);
+                snackbar.show();
             }
             else {
                 CharSequence error = (CharSequence) e;
-                inputEditText.setError(error);
-//                Snackbar snackbar = Snackbar.make(view, error, Snackbar.LENGTH_LONG);
-//                snackbar.show();
+        //        inputEditText.setError(error);
+                Snackbar snackbar = Snackbar.make(view, error, Snackbar.LENGTH_LONG);
+                snackbar.show();
             }
         }
 
@@ -139,20 +141,24 @@ public class MainActivity extends AppCompatActivity {
     public void buttonPressed(View view) {
         Button b = (Button) view;
         CharSequence buttonText = b.getText();
-        inputEditText.getEditText().append(buttonText);
-        inputEditText.setError(null);
+       // inputEditText.getEditText().append(buttonText);
+        inputEditText.append(buttonText);
+        //inputEditText.setError(null);
     }
     public void delPressed (View view) {
-        inputEditText.getEditText().dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
-        inputEditText.setError(null);
+      //  inputEditText.getEditText().dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
+        inputEditText.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
+     //   inputEditText.setError(null);
     }
     public void rightPressed (View view) {
-        inputEditText.getEditText().dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_RIGHT));
-        inputEditText.setError(null);
+       // inputEditText.getEditText().dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_RIGHT));
+        inputEditText.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_RIGHT));
+     //   inputEditText.setError(null);
     }
     public void leftPressed (View view) {
-        inputEditText.getEditText().dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_LEFT));
-        inputEditText.setError(null);
+        //   inputEditText.getEditText().dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_LEFT));
+        inputEditText.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_LEFT));
+     //   inputEditText.setError(null);
     }
 
     @Override
@@ -189,6 +195,5 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Crouton.cancelAllCroutons();
     }
 }

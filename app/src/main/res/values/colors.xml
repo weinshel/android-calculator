@@ -5,7 +5,7 @@
     <color name="accent">#1DE9B6</color>
     <color name="button_color">#FFFFFF</color>
     <color name="button_background">#455A64</color>
-    <color name="input_background">#B0BEC5</color>
+    <color name="input_background">#90A4AE</color>
     <color name="input_text_color">#FFFFFF</color>
     <color name="result_background">#ECEFF1</color>
 </resources>
