@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <!-- Row 6 -->
     <LinearLayout
@@ -16,10 +18,12 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:onClick="buttonPressed"
-            android:text="@string/button_sin" />
+            android:text="@string/button_sin"
+            style="@style/ButtonTheme"/>
 
         <Button
             android:id="@+id/button_left"
+            style="@style/ButtonTheme"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
@@ -28,6 +32,7 @@
 
         <Button
             android:id="@+id/button_right"
+            style="@style/ButtonTheme"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
@@ -37,6 +42,7 @@
 
         <Button
             android:id="@+id/button_del"
+            style="@style/ButtonTheme"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
@@ -54,6 +60,7 @@
 
         <Button
             android:id="@+id/button_lp"
+            style="@style/ButtonTheme"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
@@ -62,6 +69,7 @@
 
         <Button
             android:id="@+id/button_rp"
+            style="@style/ButtonTheme"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
@@ -70,6 +78,7 @@
 
         <Button
             android:id="@+id/button_exp"
+            style="@style/ButtonTheme"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
@@ -79,6 +88,7 @@
 
         <Button
             android:id="@+id/button_div"
+            style="@style/ButtonTheme"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
@@ -96,6 +106,7 @@
 
         <Button
             android:id="@+id/button7"
+            style="@style/ButtonTheme"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
@@ -104,6 +115,7 @@
 
         <Button
             android:id="@+id/button8"
+            style="@style/ButtonTheme"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
@@ -112,6 +124,7 @@
 
         <Button
             android:id="@+id/button9"
+            style="@style/ButtonTheme"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
@@ -121,6 +134,7 @@
 
         <Button
             android:id="@+id/button_times"
+            style="@style/ButtonTheme"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
@@ -138,6 +152,7 @@
 
         <Button
             android:id="@+id/button4"
+            style="@style/ButtonTheme"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
@@ -146,6 +161,7 @@
 
         <Button
             android:id="@+id/button5"
+            style="@style/ButtonTheme"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
@@ -154,6 +170,7 @@
 
         <Button
             android:id="@+id/button6"
+            style="@style/ButtonTheme"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
@@ -163,6 +180,7 @@
 
         <Button
             android:id="@+id/button_minus"
+            style="@style/ButtonTheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -180,6 +198,7 @@
 
         <Button
             android:id="@+id/button1"
+            style="@style/ButtonTheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -188,6 +207,7 @@
 
         <Button
             android:id="@+id/button2"
+            style="@style/ButtonTheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -196,6 +216,7 @@
 
         <Button
             android:id="@+id/button3"
+            style="@style/ButtonTheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -205,6 +226,7 @@
 
         <Button
             android:id="@+id/button_plus"
+            style="@style/ButtonTheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -222,6 +244,7 @@
 
         <Button
             android:id="@+id/button_decimal"
+            style="@style/ButtonTheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -230,6 +253,7 @@
 
         <Button
             android:id="@+id/button0"
+            style="@style/ButtonTheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -238,6 +262,7 @@
 
         <Button
             android:id="@+id/button_neg"
+            style="@style/ButtonTheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -246,6 +271,7 @@
 
         <Button
             android:id="@+id/button_equals"
+            style="@style/ButtonTheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -255,4 +281,4 @@
 
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>
