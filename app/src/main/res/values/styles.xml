@@ -12,7 +12,7 @@
     </style>
 
     <style name="ButtonTheme" parent="Base.Widget.AppCompat.Button.Borderless.Colored">
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/button_color</item>
     </style>
 
