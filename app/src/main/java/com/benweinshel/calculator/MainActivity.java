@@ -12,9 +12,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputType;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -49,9 +52,23 @@ public class MainActivity extends AppCompatActivity {
 
         inputEditText.setErrorEnabled(true);
         inputEditText.requestFocus();
-        IBinder wt = inputEditText.getWindowToken();
-        InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        in.hideSoftInputFromInputMethod(wt, 0);
+        inputEditText.getEditText().setOnTouchListener(otl);
+
+//        IBinder wt = inputEditText.getWindowToken();
+//        InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//        in.hideSoftInputFromWindow(wt, 0);
+//        inputEditText.getEditText().setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                int inType = inputEditText.getEditText().getInputType(); // backup the input type
+//                inputEditText.getEditText().setInputType(InputType.TYPE_NULL); // disable soft input
+//                inputEditText.getEditText().onTouchEvent(event); // call native handler
+//                inputEditText.getEditText().setInputType(inType); // restore input type
+//                return true; // consume touch even
+//            }
+//        });
+
+
         //inputEditText.getEditText().setInputType(null);
 
         // use this setting to improve performance if you know that changes
@@ -68,6 +85,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    private View.OnTouchListener otl = new View.OnTouchListener() {
+        public boolean onTouch (View v, MotionEvent event) {
+            return true; // the listener has consumed the event
+        }
+    };
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -78,6 +102,9 @@ public class MainActivity extends AppCompatActivity {
     public void calculateResult(View view) {
 
         String input = inputEditText.getEditText().getText().toString();
+        if (input.isEmpty()) {
+            return;
+        }
 
         // Do the calculation
         try {
@@ -113,12 +140,19 @@ public class MainActivity extends AppCompatActivity {
         Button b = (Button) view;
         CharSequence buttonText = b.getText();
         inputEditText.getEditText().append(buttonText);
+        inputEditText.setError(null);
     }
     public void delPressed (View view) {
-        int length = inputEditText.getEditText().getText().length();
-        if (length > 0) {
-            inputEditText.getEditText().getText().delete(length - 1, length);
-        }
+        inputEditText.getEditText().dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
+        inputEditText.setError(null);
+    }
+    public void rightPressed (View view) {
+        inputEditText.getEditText().dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_RIGHT));
+        inputEditText.setError(null);
+    }
+    public void leftPressed (View view) {
+        inputEditText.getEditText().dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_LEFT));
+        inputEditText.setError(null);
     }
 
     @Override
