@@ -18,7 +18,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.PopupMenu;
+import android.support.v7.widget.PopupMenu;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -163,6 +163,16 @@ public class MainActivity extends AppCompatActivity {
     public void trigButtonPressed(View view) {
         PopupMenu myMenu = new PopupMenu(getBaseContext(), view);
         getMenuInflater().inflate(R.menu.menu_trig, myMenu.getMenu());
+
+        // Define a click listener
+        myMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                inputEditText.append(item.getTitle());
+                return true;
+            }
+        });
+
         myMenu.show();
     }
 
