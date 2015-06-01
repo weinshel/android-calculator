@@ -7,21 +7,18 @@ import android.content.res.Configuration;
 import android.hardware.input.InputManager;
 import android.os.IBinder;
 import android.support.design.widget.Snackbar;
-import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.InputType;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -29,8 +26,6 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import de.keyboardsurfer.android.widget.crouton.Crouton;
-import de.keyboardsurfer.android.widget.crouton.Style;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -166,7 +161,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void trigButtonPressed(View view) {
-
+        PopupMenu myMenu = new PopupMenu(getBaseContext(), view);
+        getMenuInflater().inflate(R.menu.menu_trig, myMenu.getMenu());
+        myMenu.show();
     }
 
     @Override

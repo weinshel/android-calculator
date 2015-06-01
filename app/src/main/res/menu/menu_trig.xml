@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/menuTheme">
+    <item
+        android:id="@+id/sin"
+        android:title="@string/button_sin" />
+    <item
+        android:id="@+id/cos"
+        android:title="@string/button_cos" />
+    <item
+        android:id="@+id/tan"
+        android:title="@string/button_tan" />
+    <item
+        android:id="@+id/arcsin"
+        android:title="@string/button_asin" />
+    <item
+        android:id="@+id/arccos"
+        android:title="@string/button_acos" />
+    <item
+        android:id="@+id/arctan"
+        android:title="@string/button_atan" />
+</menu>
