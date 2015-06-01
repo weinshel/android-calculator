@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@color/button_background"
-    android:elevation="5dp">
+    android:background="@color/button_background">
 
     <!-- Row 6 -->
     <LinearLayout
@@ -23,33 +22,33 @@
             android:text="@string/button_sin"
             style="@style/ButtonTheme"/>
 
-        <Button
+        <ImageButton
             android:id="@+id/button_left"
             style="@style/ButtonTheme"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:onClick="leftPressed"
-            android:text="@string/button_left" />
+            android:src="@drawable/ic_navigation_arrow_back"/>
 
-        <Button
+        <ImageButton
             android:id="@+id/button_right"
             style="@style/ButtonTheme"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:onClick="rightPressed"
-            android:text="@string/button_right" />
+            android:src="@drawable/ic_navigation_arrow_forward" />
 
 
-        <Button
+        <ImageButton
             android:id="@+id/button_del"
             style="@style/ButtonTheme"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:onClick="delPressed"
-            android:text="@string/button_del" />
+            android:src="@drawable/ic_content_backspace" />
     </LinearLayout>
 
     <!-- Row 5 -->

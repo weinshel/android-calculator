@@ -54,7 +54,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         CalculationLog model = mDataset.get(position);
-        holder.input.setText(model.input + "=");
+        holder.input.setText(model.input + " = ");
         holder.result.setText(model.result);
     }
 
