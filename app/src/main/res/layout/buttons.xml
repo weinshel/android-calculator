@@ -36,7 +36,8 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:onClick="leftPressed"
-            android:src="@drawable/ic_navigation_arrow_back"/>
+            android:src="@drawable/ic_navigation_arrow_back"
+            android:contentDescription="@string/button_left"/>
 
         <ImageButton
             android:id="@+id/button_right"
@@ -45,7 +46,8 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:onClick="rightPressed"
-            android:src="@drawable/ic_navigation_arrow_forward" />
+            android:src="@drawable/ic_navigation_arrow_forward"
+            android:contentDescription="@string/button_right"/>
 
 
         <ImageButton
@@ -55,7 +57,8 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:onClick="delPressed"
-            android:src="@drawable/ic_content_backspace" />
+            android:src="@drawable/ic_content_backspace"
+            android:contentDescription="@string/button_del"/>
     </LinearLayout>
 
     <!-- Row 5 -->
