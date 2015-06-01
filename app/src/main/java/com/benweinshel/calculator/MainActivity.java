@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
             myMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
-                    inputEditText.append(item.getTitle());
+                    inputEditText.getText().insert(inputEditText.getSelectionStart(), item.getTitle());
                     return true;
                 }
             });
