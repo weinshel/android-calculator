@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
 
         <!-- Main theme colors -->
@@ -14,6 +14,19 @@
     <style name="ButtonTheme" parent="Base.Widget.AppCompat.Button.Borderless.Colored">
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/button_color</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 
+    <style name="inputTheme" parent="Widget.AppCompat.EditText">
+        <item name="android:textColor">@color/input_text_color</item>
+    </style>
+
+    <style name="historyInputTheme">
+        <item name="android:textColor">@color/secondary_text_default_material_light</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+    <style name="historyResultTheme">
+        <item name="android:textColor">@color/primary_text_default_material_light</item>
+        <item name="android:textSize">30sp</item>
+    </style>
 </resources>

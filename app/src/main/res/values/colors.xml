@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#009688</color>
-    <color name="primary_dark">#00796B</color>
-    <color name="accent">#1DE9B6</color>
+    <color name="primary">#2196F3</color>
+    <color name="primary_dark">#1976D2</color>
+    <color name="accent">#FFFF00</color>
     <color name="button_color">#FFFFFF</color>
     <color name="button_background">#455A64</color>
-    <color name="input_background">#90A4AE</color>
+    <color name="input_background">#4FC3F7</color>
     <color name="input_text_color">#FFFFFF</color>
+
     <color name="result_background">#ECEFF1</color>
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#727272</color>
 </resources>
