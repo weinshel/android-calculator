@@ -18,9 +18,16 @@
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:onClick="buttonPressed"
-            android:text="@string/button_sin"
-            style="@style/ButtonTheme"/>
+            android:onClick="trigButtonPressed"
+            android:text="@string/button_trig"
+            style="@style/ButtonThemeWord"/>
+
+        <!--<Spinner-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1">-->
+            <!-- -->
+        <!--</Spinner>-->
 
         <ImageButton
             android:id="@+id/button_left"
@@ -261,23 +268,19 @@
             android:onClick="buttonPressed"
             android:text="@string/button0" />
 
-        <Button
-            android:id="@+id/button_neg"
-            style="@style/ButtonTheme"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="buttonPressed"
-            android:text="@string/button_neg" />
+        <!--<Button-->
+            <!--android:id="@+id/button_neg"-->
+            <!--style="@style/ButtonTheme"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:onClick="buttonPressed"-->
+            <!--android:text="@string/button_neg" />-->
 
-        <Button
-            android:id="@+id/button_equals"
-            style="@style/ButtonTheme"
+        <View
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="calculateResult"
-            android:text="@string/button_equals" />
+            android:layout_height="0dp"
+            android:layout_weight="2"/>
 
 
     </LinearLayout>

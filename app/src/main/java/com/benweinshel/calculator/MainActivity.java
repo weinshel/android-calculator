@@ -165,6 +165,10 @@ public class MainActivity extends AppCompatActivity {
         //   inputEditText.setError(null);
     }
 
+    public void trigButtonPressed(View view) {
+
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
