@@ -5,15 +5,13 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import de.keyboardsurfer.android.widget.crouton.Crouton;
-import de.keyboardsurfer.android.widget.crouton.Style;
 import hugo.weaving.DebugLog;
 
 /**
  * Created by Ben Weinshel on 5/22/15.
  * Does math
  */
-public class Maths {
+class Maths {
     public static String doMath(String input) throws Exception {
 
         // Check for parenthesis errors before doing anything else:

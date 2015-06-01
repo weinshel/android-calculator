@@ -1,14 +1,12 @@
 package com.benweinshel.calculator;
 
-import java.math.BigDecimal;
-import java.util.List;
 
-/**
- * Created by bmweinshel15 on 5/26/15.
+/*
+ Created by Ben Weinshel on 5/26/15.
  */
-public class CalculationLog {
-    String input;
-    String result;
+class CalculationLog {
+    final String input;
+    final String result;
 
     CalculationLog(String input, String result) {
         this.input = input;

@@ -36,7 +36,7 @@
     <string name="button_del">DEL</string>
     <string name="button_lp">(</string>
     <string name="button_rp">)</string>
-    <string name="button_right">➜</string>
-    <string name="button_left"></string>
+    <string name="button_right">right</string>
+    <string name="button_left">left</string>
     <string name="button_neg">(-)</string>
 </resources>

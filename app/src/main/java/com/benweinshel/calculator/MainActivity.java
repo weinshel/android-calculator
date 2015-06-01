@@ -1,11 +1,6 @@
 package com.benweinshel.calculator;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.hardware.input.InputManager;
-import android.os.IBinder;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,7 +14,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupMenu;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,15 +24,16 @@ import butterknife.InjectView;
 
 public class MainActivity extends AppCompatActivity {
 
+    @SuppressWarnings("unused")
     @InjectView(R.id.editText)
     EditText inputEditText;
+    @SuppressWarnings("unused")
     @InjectView(R.id.my_recycler_view)
     RecyclerView mRecyclerView;
 
     private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
 
-    List<CalculationLog> calculations = new ArrayList<CalculationLog>();
+    private final List<CalculationLog> calculations = new ArrayList<CalculationLog>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
@@ -84,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private View.OnTouchListener otl = new View.OnTouchListener() {
+    private final View.OnTouchListener otl = new View.OnTouchListener() {
         public boolean onTouch(View v, MotionEvent event) {
             return true; // the listener has consumed the event
         }
@@ -110,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
             doResult(input);
         } catch (Exception e) {
             if (!e.getMessage().isEmpty()) {
-                CharSequence message = (CharSequence) e.getMessage();
+                CharSequence message = e.getMessage();
                 //        inputEditText.setError(message);
                 Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG);
                 snackbar.show();
@@ -142,19 +137,19 @@ public class MainActivity extends AppCompatActivity {
         //inputEditText.setError(null);
     }
 
-    public void delPressed(View view) {
+    public void delPressed(@SuppressWarnings("UnusedParameters") View view) {
         //  inputEditText.getEditText().dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
         inputEditText.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
         //   inputEditText.setError(null);
     }
 
-    public void rightPressed(View view) {
+    public void rightPressed(@SuppressWarnings("UnusedParameters") View view) {
         // inputEditText.getEditText().dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_RIGHT));
         inputEditText.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_RIGHT));
         //   inputEditText.setError(null);
     }
 
-    public void leftPressed(View view) {
+    public void leftPressed(@SuppressWarnings("UnusedParameters") View view) {
         //   inputEditText.getEditText().dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_LEFT));
         inputEditText.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_LEFT));
         //   inputEditText.setError(null);
@@ -208,8 +203,8 @@ public class MainActivity extends AppCompatActivity {
         return result;
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//    }
 }

@@ -9,7 +9,7 @@ import java.util.List;
  *
  * Contains all the operations (+ - * / ^) to do math
  */
-public class Operations {
+class Operations {
     public static BigDecimal addValues(List<BigDecimal> operationList) throws NumberFormatException {
         BigDecimal d1 = operationList.get(0);
         BigDecimal d2 = operationList.get(1);
