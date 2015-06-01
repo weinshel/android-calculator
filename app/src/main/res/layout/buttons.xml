@@ -12,21 +12,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/button_sin"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:onClick="trigButtonPressed"
-            android:text="@string/button_trig"
-            style="@style/ButtonThemeWord"/>
-
-        <!--<Spinner-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1">-->
-            <!-- -->
-        <!--</Spinner>-->
 
         <ImageButton
             android:id="@+id/button_left"
@@ -86,6 +71,15 @@
             android:text="@string/button_rp" />
 
         <Button
+            android:id="@+id/button_sin"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:onClick="trigButtonPressed"
+            android:text="@string/button_trig"
+            style="@style/ButtonThemeWord"/>
+
+        <Button
             android:id="@+id/button_exp"
             style="@style/ButtonTheme"
             android:layout_width="0dp"
@@ -95,14 +89,7 @@
             android:text="@string/button_exp" />
 
 
-        <Button
-            android:id="@+id/button_div"
-            style="@style/ButtonTheme"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:onClick="buttonPressed"
-            android:text="@string/button_div" />
+
     </LinearLayout>
 
     <!-- 7, 8, 9, and /-->
@@ -139,15 +126,16 @@
             android:onClick="buttonPressed"
             android:text="@string/button9" />
 
-
         <Button
-            android:id="@+id/button_times"
+            android:id="@+id/button_div"
             style="@style/ButtonTheme"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:onClick="buttonPressed"
-            android:text="@string/button_times" />
+            android:text="@string/button_div" />
+
+
     </LinearLayout>
 
     <!-- 4, 5, 6, and *-->
@@ -184,15 +172,15 @@
             android:onClick="buttonPressed"
             android:text="@string/button6" />
 
-
         <Button
-            android:id="@+id/button_minus"
+            android:id="@+id/button_times"
             style="@style/ButtonTheme"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
             android:onClick="buttonPressed"
-            android:text="@string/button_minus" />
+            android:text="@string/button_times" />
+
     </LinearLayout>
 
     <!-- 1, 2, 3, and - -->
@@ -229,15 +217,15 @@
             android:onClick="buttonPressed"
             android:text="@string/button3" />
 
-
         <Button
-            android:id="@+id/button_plus"
+            android:id="@+id/button_minus"
             style="@style/ButtonTheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="buttonPressed"
-            android:text="@string/button_plus" />
+            android:text="@string/button_minus" />
+
     </LinearLayout>
 
     <!-- ., 0, (-), and = -->
@@ -247,14 +235,12 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/button_decimal"
-            style="@style/ButtonTheme"
+        <View
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="buttonPressed"
-            android:text="@string/button_decimal" />
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+
 
         <Button
             android:id="@+id/button0"
@@ -265,6 +251,15 @@
             android:onClick="buttonPressed"
             android:text="@string/button0" />
 
+        <Button
+            android:id="@+id/button_decimal"
+            style="@style/ButtonTheme"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="buttonPressed"
+            android:text="@string/button_decimal" />
+
         <!--<Button-->
             <!--android:id="@+id/button_neg"-->
             <!--style="@style/ButtonTheme"-->
@@ -274,10 +269,16 @@
             <!--android:onClick="buttonPressed"-->
             <!--android:text="@string/button_neg" />-->
 
-        <View
+
+
+        <Button
+            android:id="@+id/button_plus"
+            style="@style/ButtonTheme"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="2"/>
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="buttonPressed"
+            android:text="@string/button_plus" />
 
 
     </LinearLayout>

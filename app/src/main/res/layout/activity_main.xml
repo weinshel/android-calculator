@@ -36,20 +36,7 @@
     <!--android:layout_marginTop="-10dp"/>-->
 
 
-    <!-- There is no shadow due to a framework bug-->
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/editText"
-        android:layout_marginTop="-28dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginEnd="16dp"
-        android:elevation="6dp"
-        android:onClick="calculateResult"
-        android:src="@drawable/ic_equals_sign"
-        />
+
 
     <EditText
         android:id="@+id/editText"
@@ -65,9 +52,25 @@
         android:paddingBottom="@dimen/input_margin_vertical"
         android:paddingTop="@dimen/input_margin_vertical"
         android:layout_above="@+id/buttons"
+        android:inputType="textNoSuggestions"
         style="@style/inputTheme"
         android:textColorHint="@color/secondary_text_default_material_dark" />
 
+    <!-- There is no shadow due to a framework bug-->
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@+id/my_recycler_view"
+        android:layout_marginBottom="@dimen/fab_margin_vertical"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
+        android:elevation="6dp"
+        android:onClick="calculateResult"
+        android:src="@drawable/ic_equals_sign"
+        />
 
     <include
         android:id="@+id/buttons"

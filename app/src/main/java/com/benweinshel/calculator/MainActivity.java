@@ -1,6 +1,8 @@
 package com.benweinshel.calculator;
 
 import android.content.Intent;
+import android.os.Build;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupMenu;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,12 +27,9 @@ import butterknife.InjectView;
 
 public class MainActivity extends AppCompatActivity {
 
-    @SuppressWarnings("unused")
-    @InjectView(R.id.editText)
-    EditText inputEditText;
-    @SuppressWarnings("unused")
-    @InjectView(R.id.my_recycler_view)
-    RecyclerView mRecyclerView;
+    @InjectView(R.id.editText) EditText inputEditText;
+    @InjectView(R.id.my_recycler_view) RecyclerView mRecyclerView;
+    @InjectView(R.id.fab) FloatingActionButton floatingActionButton;
 
     private RecyclerView.Adapter mAdapter;
 
@@ -42,27 +42,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
 
-        //   inputEditText.setErrorEnabled(true);
         inputEditText.requestFocus();
-        //    inputEditText.getEditText().setOnTouchListener(otl);
         inputEditText.setOnTouchListener(otl);
-
-//        IBinder wt = inputEditText.getWindowToken();
-//        InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//        in.hideSoftInputFromWindow(wt, 0);
-//        inputEditText.getEditText().setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                int inType = inputEditText.getEditText().getInputType(); // backup the input type
-//                inputEditText.getEditText().setInputType(InputType.TYPE_NULL); // disable soft input
-//                inputEditText.getEditText().onTouchEvent(event); // call native handler
-//                inputEditText.getEditText().setInputType(inType); // restore input type
-//                return true; // consume touch even
-//            }
-//        });
-
-
-        //inputEditText.getEditText().setInputType(null);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -76,9 +57,12 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new RecyclerViewAdapter(calculations);
         mRecyclerView.setAdapter(mAdapter);
 
+
     }
 
 
+
+    // an OnTouchListener for the edit text that does absolutely nothing (absorbs the touch)
     private final View.OnTouchListener otl = new View.OnTouchListener() {
         public boolean onTouch(View v, MotionEvent event) {
             return true; // the listener has consumed the event
@@ -132,44 +116,40 @@ public class MainActivity extends AppCompatActivity {
     public void buttonPressed(View view) {
         Button b = (Button) view;
         CharSequence buttonText = b.getText();
-        // inputEditText.getEditText().append(buttonText);
-        inputEditText.append(buttonText);
-        //inputEditText.setError(null);
+        inputEditText.getText().insert(inputEditText.getSelectionStart(), buttonText);
     }
 
     public void delPressed(@SuppressWarnings("UnusedParameters") View view) {
-        //  inputEditText.getEditText().dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
         inputEditText.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
-        //   inputEditText.setError(null);
     }
 
     public void rightPressed(@SuppressWarnings("UnusedParameters") View view) {
-        // inputEditText.getEditText().dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_RIGHT));
         inputEditText.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_RIGHT));
-        //   inputEditText.setError(null);
     }
 
     public void leftPressed(@SuppressWarnings("UnusedParameters") View view) {
-        //   inputEditText.getEditText().dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_LEFT));
         inputEditText.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_LEFT));
-        //   inputEditText.setError(null);
     }
 
     // TODO: compatability to API 10
     public void trigButtonPressed(View view) {
-        PopupMenu myMenu = new PopupMenu(getBaseContext(), view);
-        getMenuInflater().inflate(R.menu.menu_trig, myMenu.getMenu());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            PopupMenu myMenu = new PopupMenu(getBaseContext(), view);
+            getMenuInflater().inflate(R.menu.menu_trig, myMenu.getMenu());
 
-        // Define a click listener
-        myMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                inputEditText.append(item.getTitle());
-                return true;
-            }
-        });
+            // Define a click listener
+            myMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    inputEditText.append(item.getTitle());
+                    return true;
+                }
+            });
 
-        myMenu.show();
+            myMenu.show();
+        } else {
+            inputEditText.getText().insert(inputEditText.getSelectionStart(), "sin(");
+        }
     }
 
     @Override

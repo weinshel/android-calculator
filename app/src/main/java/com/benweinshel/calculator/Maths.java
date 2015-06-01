@@ -1,6 +1,7 @@
 package com.benweinshel.calculator;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -65,7 +66,7 @@ class Maths {
         // Match all of the possible tokens: either a number, an operator, or ()
         // and put it in an array list
         List<String> allTokens = new ArrayList<>();
-        Matcher m = Pattern.compile("[-\\+÷×\\^\\(\\)]|-?\\d+(\\.\\d+)?|sin|cos|tan|arcsin|arccos|arctan").matcher(input);
+        Matcher m = Pattern.compile("[-\\+÷×\\^\\(\\)]|-?\\d+(\\.\\d+)?|-?\\.\\d+|arcsin|arccos|arctan|sin|cos|tan|").matcher(input);
         while (m.find()) {
             allTokens.add(m.group());
         }
@@ -124,7 +125,7 @@ class Maths {
             }
 
             // if a left ( or a function, push the token directly to the stack
-            else if (token.matches("|sin|cos|tan|arcsin|arccos|arctan")) {
+            else if (token.matches("sin|cos|tan|arcsin|arccos|arctan")) {
                 stack.push(token);
             }
             else if (token.equals(")")) {
@@ -144,7 +145,7 @@ class Maths {
                 stack.push(token);
             }
             // if the token is a number, push it to the output
-            else { // if (operatorIndex = -1)
+            else {
                 output.push(token);
             }
 
@@ -246,7 +247,9 @@ class Maths {
         }
 
         if (stack.size() == 1) {
-            return stack.pop().toString();
+            BigDecimal result = stack.pop();
+            BigDecimal roundedResult = result.round(MathContext.DECIMAL32);
+            return roundedResult.toString();
         }
         else {
             throw new Exception("Syntax error: insufficient operators");
@@ -254,6 +257,6 @@ class Maths {
     }
 
     private static boolean isNumeric(String str){
-        return str.matches("-?\\d+(\\.\\d+)?"); // match a number, optionally with - and .
+        return str.matches("-?\\d+(\\.\\d+)?|-?\\.\\d+"); // match a number, optionally with - and .
     }
 }

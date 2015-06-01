@@ -52,13 +52,21 @@ class Operations {
     static BigDecimal calculateTan(BigDecimal d) throws NumberFormatException {
         return new BigDecimal(Math.tan(d.doubleValue()));
     }
-    static BigDecimal calculateASin(BigDecimal d) throws NumberFormatException {
-        return new BigDecimal(Math.asin(d.doubleValue()));
+    static BigDecimal calculateASin(BigDecimal d) throws Exception {
+        if (d.abs().min(BigDecimal.ONE) == BigDecimal.ONE) {
+            throw new Exception("Error: cannot calculate arcsin(" + d + ")");
+        } else {
+            return new BigDecimal(Math.asin(d.doubleValue()));
+        }
     }
-    static BigDecimal calculateACos(BigDecimal d) throws NumberFormatException {
-        return new BigDecimal(Math.acos(d.doubleValue()));
+    static BigDecimal calculateACos(BigDecimal d) throws Exception {
+        if (d.abs().min(BigDecimal.ONE) == BigDecimal.ONE) {
+            throw new Exception("Error: cannot calculate arccos(" + d + ")");
+        } else {
+            return new BigDecimal(Math.acos(d.doubleValue()));
+        }
     }
-    static BigDecimal calculateATan(BigDecimal d) throws NumberFormatException {
+    static BigDecimal calculateATan(BigDecimal d) throws Exception {
         return new BigDecimal(Math.atan(d.doubleValue()));
     }
 }
