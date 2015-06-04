@@ -10,7 +10,7 @@ import java.util.List;
  * Contains all the operations (+ - * / ^) to do math
  */
 class Operations {
-    public static BigDecimal addValues(List<BigDecimal> operationList) throws NumberFormatException {
+     static BigDecimal addValues(List<BigDecimal> operationList) throws NumberFormatException {
         BigDecimal d1 = operationList.get(0);
         BigDecimal d2 = operationList.get(1);
         return d2.add(d1);
