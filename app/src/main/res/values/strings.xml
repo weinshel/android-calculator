@@ -9,6 +9,7 @@
 
     <string name="about_text">This app was created by Ben Weinshel</string>
 
+    <!-- Buttons-->
     <string name="button0">0</string>
     <string name="button1">1</string>
     <string name="button2">2</string>
@@ -39,4 +40,12 @@
     <string name="button_right">right</string>
     <string name="button_left">left</string>
     <string name="button_neg">(-)</string>
+
+    <!-- Error Messages-->
+    <string name="syntax_error">Syntax error</string>
+    <string name="paren_unbalanced">Syntax error: unbalanced parenthesis</string>
+    <string name="paren_l_over_r">Syntax error: more ‟(” than ‟)”</string>
+    <string name="paren_r_over_l">Syntax error: more ‟)” than ‟(”</string>
+    <string name="paren_generic">Parenthesis error</string>
+    <string name="insufficient_operators">Syntax error: insufficient operators</string>
 </resources>

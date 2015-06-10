@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void doResult(String input) throws Exception {
 
-        String result = Maths.doMath(input);
+        String result = Maths.doMath(input, this);
         CalculationLog c = new CalculationLog(input, result);
         int calcSize = calculations.size();
         calculations.add(c);

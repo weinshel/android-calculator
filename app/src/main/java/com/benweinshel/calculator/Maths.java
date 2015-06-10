@@ -1,11 +1,11 @@
 package com.benweinshel.calculator;
 
+import android.content.Context;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import hugo.weaving.DebugLog;
 
 /**
@@ -13,15 +13,15 @@ import hugo.weaving.DebugLog;
  * Does math
  */
 class Maths {
-    public static String doMath(String input) throws Exception {
+    public static String doMath(String input, Context c) throws Exception {
 
         // Check for parenthesis errors before doing anything else:
-        checkParen(input);
-        Stack<String> postfix = convertToPostfix(input);
-        return evaluatePostfix(postfix);
+        checkParen(input, c);
+        Stack<String> postfix = convertToPostfix(input, c);
+        return evaluatePostfix(postfix, c);
     }
 
-    private static void checkParen(String input) throws Exception {
+    private static void checkParen(String input, Context c) throws Exception {
         int parenCounter = 0;
         boolean unbalanced = false;
         for (char ch: input.toCharArray()) {
@@ -39,19 +39,19 @@ class Maths {
         }
 
         if (parenCounter < 0) {
-            throw new Exception("Syntax error: more parenthesis closed than opened");
+            throw new Exception(c.getString(R.string.paren_r_over_l));
         }
         else if (parenCounter > 0) {
-            throw new Exception("Syntax error: more parenthesis opened than closed");
+            throw new Exception(c.getString(R.string.paren_l_over_r));
         }
         else if (unbalanced) {
-            throw new Exception("Syntax error: unbalanced parenthesis");
+            throw new Exception(c.getString(R.string.paren_unbalanced));
         }
     }
 
     // Uses the shunting yard algorithm to generate a stack for the expression that is in postfix notation
     @DebugLog
-    private static Stack<String> convertToPostfix(String input) throws Exception {
+    private static Stack<String> convertToPostfix(String input, Context c) throws Exception {
 
         Map<String, Integer> operationsMap = new HashMap<>();
         operationsMap.put("-", 1);
@@ -135,7 +135,7 @@ class Maths {
                 try {
                     stack.pop();
                 } catch (EmptyStackException e) {
-                    throw new Exception("Parenthesis error");
+                    throw new Exception(c.getString(R.string.paren_generic));
                 }
             }
             else if (token.equals("(")) {
@@ -163,7 +163,7 @@ class Maths {
 
     // Evaluates a postfix expression
     @DebugLog
-    private static String evaluatePostfix(Stack<String> postfixIn) throws Exception {
+    private static String evaluatePostfix(Stack<String> postfixIn, Context c) throws Exception {
 
         if (postfixIn.isEmpty()) {
             return null;
@@ -252,7 +252,7 @@ class Maths {
             return roundedResult.toString();
         }
         else {
-            throw new Exception("Syntax error: insufficient operators");
+            throw new Exception(c.getString(R.string.insufficient_operators));
         }
     }
 
