@@ -48,4 +48,9 @@
     <string name="paren_r_over_l">Syntax error: more ‟)” than ‟(”</string>
     <string name="paren_generic">Parenthesis error</string>
     <string name="insufficient_operators">Syntax error: insufficient operators</string>
+    <string name="err_unexpected">Error: unexpected ‟</string>
+    <string name="two_consec">Error: two consecutive operators: ‟</string>
+    <string name="nothing_to_op">Syntax error: nothing to operate ‟</string>
+    <string name="nothing_to_calc">Syntax error: nothing to calclulate ‟</string>
+    <string name="unrec_input">Error: unrecognized input</string>
 </resources>

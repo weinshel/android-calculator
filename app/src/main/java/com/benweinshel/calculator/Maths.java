@@ -74,7 +74,7 @@ class Maths {
             return output;
         }
         else if (operationsMap.containsKey(allTokens.get(0))) {
-            throw new Exception("Error: unexpected ‟" + allTokens.get(0) + "”");
+            throw new Exception(c.getString(R.string.err_unexpected) + allTokens.get(0) + "”");
         }
 
         String prevToken = "";
@@ -93,7 +93,7 @@ class Maths {
 
                     // handle an error where two consecutive operators are typed in
                     if (operationsMap.containsKey(prevToken)) {
-                        throw new Exception("Two consecutive operators: ‟" + prev + "” and ‟" + token + "”");
+                        throw new Exception(c.getString(R.string.two_consec) + prev + "” and ‟" + token + "”");
                     }
 
                     // left-associative operations
@@ -187,9 +187,9 @@ class Maths {
 
                 switch (stack.size()) {
                     case 0:
-                        throw new Exception("Syntax error: nothing to operate ‟" + token + "” on");
+                        throw new Exception(c.getString(R.string.nothing_to_op) + token + "” on");
                     case 1:
-                        throw new Exception("Syntax error: unable to operate ‟" + token + "” on only ‟" + stack.peek() + "”");
+                        throw new Exception(c.getString(R.string.err_unexpected) + token + "”");
                 }
                 for (int i = 1; i <=2; i++) {
                     operationList.add(stack.pop());
@@ -238,11 +238,11 @@ class Maths {
                             break;
                     }
                 } catch (EmptyStackException e) {
-                    throw new Exception("Syntax error: nothing to calculate \u201c" + token + "\u201d of");
+                    throw new Exception(c.getString(R.string.nothing_to_calc) + token + "\u201d of");
                 }
             }
             else {
-                throw new Exception("Syntax error: unrecognized input ‟" + token + "”" );
+                throw new Exception(c.getString(R.string.unrec_input));
             }
         }
 
