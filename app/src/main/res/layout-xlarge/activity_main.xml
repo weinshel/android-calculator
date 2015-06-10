@@ -56,12 +56,12 @@
     <include
         android:id="@+id/buttons"
         layout="@layout/buttons"
-        android:layout_width="300dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:elevation="2dp"
-        android:paddingBottom="32dp"
-        android:paddingTop="32dp"
+        android:paddingBottom="64dp"
+        android:paddingTop="64dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentTop="true" />
 
