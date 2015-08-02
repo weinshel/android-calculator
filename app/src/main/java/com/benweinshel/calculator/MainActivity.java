@@ -15,8 +15,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-//import android.widget.PopupMenu;
 import android.support.v7.widget.PopupMenu;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     @InjectView(R.id.editText) EditText inputEditText;
     @InjectView(R.id.my_recycler_view) RecyclerView mRecyclerView;
     @InjectView(R.id.fab) FloatingActionButton floatingActionButton;
+    @InjectView(R.id.button_del) ImageButton delButton;
 
     private RecyclerView.Adapter mAdapter;
 
@@ -58,6 +59,19 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new RecyclerViewAdapter(calculations);
         mRecyclerView.setAdapter(mAdapter);
 
+        delButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                inputEditText.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
+            }
+        });
+
+        delButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                inputEditText.setText(null);
+                return true;
+            }
+        });
 
     }
 
@@ -88,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
         // Do the calculation
         try {
             doResult(input);
+            inputEditText.setText(null);
         } catch (Exception e) {
             if (!e.getMessage().isEmpty()) {
                 CharSequence message = e.getMessage();
@@ -120,9 +135,13 @@ public class MainActivity extends AppCompatActivity {
         inputEditText.getText().insert(inputEditText.getSelectionStart(), buttonText);
     }
 
-    public void delPressed(@SuppressWarnings("UnusedParameters") View view) {
-        inputEditText.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
-    }
+//    public void delPressed(@SuppressWarnings("UnusedParameters") View view) {
+//        inputEditText.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
+//    }
+//
+//    public void delClear(View view) {
+//        inputEditText.setText(null);
+//    }
 
     public void rightPressed(@SuppressWarnings("UnusedParameters") View view) {
         inputEditText.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_RIGHT));
@@ -131,27 +150,6 @@ public class MainActivity extends AppCompatActivity {
     public void leftPressed(@SuppressWarnings("UnusedParameters") View view) {
         inputEditText.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_LEFT));
     }
-
-//    // TODO: compatability to API 10
-//    public void trigButtonPressed(View view) {
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-//            PopupMenu myMenu = new PopupMenu(getBaseContext(), view);
-//            getMenuInflater().inflate(R.menu.menu_trig, myMenu.getMenu());
-//
-//            // Define a click listener
-//            myMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-//                @Override
-//                public boolean onMenuItemClick(MenuItem item) {
-//                    inputEditText.getText().insert(inputEditText.getSelectionStart(), item.getTitle());
-//                    return true;
-//                }
-//            });
-//
-//            myMenu.show();
-//        } else {
-//            inputEditText.getText().insert(inputEditText.getSelectionStart(), "sin(");
-//        }
-//    }
 
     public void trigButtonPressed(View view) {
         PopupMenu myMenu = new PopupMenu(MainActivity.this, view);
