@@ -15,7 +15,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.PopupMenu;
+//import android.widget.PopupMenu;
+import android.support.v7.widget.PopupMenu;
 import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
@@ -131,25 +132,42 @@ public class MainActivity extends AppCompatActivity {
         inputEditText.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_LEFT));
     }
 
-    // TODO: compatability to API 10
+//    // TODO: compatability to API 10
+//    public void trigButtonPressed(View view) {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+//            PopupMenu myMenu = new PopupMenu(getBaseContext(), view);
+//            getMenuInflater().inflate(R.menu.menu_trig, myMenu.getMenu());
+//
+//            // Define a click listener
+//            myMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+//                @Override
+//                public boolean onMenuItemClick(MenuItem item) {
+//                    inputEditText.getText().insert(inputEditText.getSelectionStart(), item.getTitle());
+//                    return true;
+//                }
+//            });
+//
+//            myMenu.show();
+//        } else {
+//            inputEditText.getText().insert(inputEditText.getSelectionStart(), "sin(");
+//        }
+//    }
+
     public void trigButtonPressed(View view) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            PopupMenu myMenu = new PopupMenu(getBaseContext(), view);
-            getMenuInflater().inflate(R.menu.menu_trig, myMenu.getMenu());
+        PopupMenu myMenu = new PopupMenu(MainActivity.this, view);
+        myMenu.inflate(R.menu.menu_trig);
 
-            // Define a click listener
-            myMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    inputEditText.getText().insert(inputEditText.getSelectionStart(), item.getTitle());
-                    return true;
-                }
-            });
+        view.setOnTouchListener(myMenu.getDragToOpenListener());
+        // Define a click listener
+        myMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                inputEditText.getText().insert(inputEditText.getSelectionStart(), item.getTitle());
+                return true;
+            }
+        });
 
-            myMenu.show();
-        } else {
-            inputEditText.getText().insert(inputEditText.getSelectionStart(), "sin(");
-        }
+        myMenu.show();
     }
 
     @Override
