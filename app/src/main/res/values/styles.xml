@@ -42,11 +42,11 @@
     <!-- History view-->
     <style name="historyInputTheme">
         <item name="android:textColor">@color/secondary_text_default_material_light</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">20sp</item>
     </style>
     <style name="historyResultTheme">
         <item name="android:textColor">@color/primary_text_default_material_light</item>
-        <item name="android:textSize">30sp</item>
+        <item name="android:textSize">28sp</item>
     </style>
 
     <!-- Popup Menu-->
