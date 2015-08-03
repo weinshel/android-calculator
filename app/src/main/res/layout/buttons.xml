@@ -23,7 +23,9 @@
             android:layout_weight="1"
             android:onClick="leftPressed"
             android:src="@drawable/ic_navigation_arrow_back"
-            android:contentDescription="@string/button_left"/>
+            android:contentDescription="@string/button_left"
+            android:longClickable="true"
+            />
 
         <ImageButton
             android:id="@+id/button_right"
@@ -33,7 +35,9 @@
             android:layout_weight="1"
             android:onClick="rightPressed"
             android:src="@drawable/ic_navigation_arrow_forward"
-            android:contentDescription="@string/button_right"/>
+            android:contentDescription="@string/button_right"
+            android:longClickable="true"
+            />
 
 
         <ImageButton

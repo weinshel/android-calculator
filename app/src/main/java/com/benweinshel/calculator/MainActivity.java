@@ -1,6 +1,7 @@
 package com.benweinshel.calculator;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -32,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
     @InjectView(R.id.my_recycler_view) RecyclerView mRecyclerView;
     @InjectView(R.id.fab) FloatingActionButton floatingActionButton;
     @InjectView(R.id.button_del) ImageButton delButton;
+    @InjectView(R.id.button_left) ImageButton leftButton;
+    @InjectView(R.id.button_right) ImageButton rightButton;
+
 
     private RecyclerView.Adapter mAdapter;
 
@@ -65,10 +69,30 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Delete button long press
         delButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 inputEditText.setText(null);
+                return true;
+            }
+        });
+
+        // Left button long press
+        leftButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                inputEditText.setSelection(0, 0);
+                return true;
+            }
+        });
+
+        // Right button long press
+        rightButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                int textLength = inputEditText.getText().length();
+                inputEditText.setSelection(textLength, textLength);
                 return true;
             }
         });

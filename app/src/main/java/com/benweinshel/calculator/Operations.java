@@ -3,6 +3,9 @@ package com.benweinshel.calculator;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.List;
+import org.nevec.rjm.BigDecimalMath;
+import hugo.weaving.DebugLog;
+
 
 /**
  * Created by Ben Weinshel on 5/22/15.
@@ -38,35 +41,44 @@ class Operations {
         }
         return result;
     }
+
+    @DebugLog
     static BigDecimal exponentiateValues(List<BigDecimal> operationList) throws NumberFormatException {
         BigDecimal d1 = operationList.get(0);
         BigDecimal d2 = operationList.get(1);
-        return new BigDecimal(Math.pow(d2.doubleValue(), d1.doubleValue()));
+       // return new BigDecimal(Math.pow(d2.doubleValue(), d1.doubleValue()));
+        return BigDecimalMath.pow(d2,d1);
     }
     static BigDecimal calculateSin(BigDecimal d) throws NumberFormatException {
-        return new BigDecimal(Math.sin(d.doubleValue()));
+        //return new BigDecimal(Math.sin(d.doubleValue()));
+        return BigDecimalMath.sin(d);
     }
     static BigDecimal calculateCos(BigDecimal d) throws NumberFormatException {
-        return new BigDecimal(Math.cos(d.doubleValue()));
+        //return new BigDecimal(Math.cos(d.doubleValue()));
+        return BigDecimalMath.cos(d);
     }
     static BigDecimal calculateTan(BigDecimal d) throws NumberFormatException {
-        return new BigDecimal(Math.tan(d.doubleValue()));
+        //return new BigDecimal(Math.tan(d.doubleValue()));
+        return BigDecimalMath.tan(d);
     }
     static BigDecimal calculateASin(BigDecimal d) throws Exception {
-        if (d.abs().min(BigDecimal.ONE) == BigDecimal.ONE) {
-            throw new Exception("Error: cannot calculate arcsin(" + d + ")");
-        } else {
-            return new BigDecimal(Math.asin(d.doubleValue()));
-        }
+//        if (d.abs().min(BigDecimal.ONE) == BigDecimal.ONE) {
+//            throw new Exception("Error: cannot calculate arcsin(" + d + ")");
+//        } else {
+//            return new BigDecimal(Math.asin(d.doubleValue()));
+//        }
+        return BigDecimalMath.asin(d);
     }
     static BigDecimal calculateACos(BigDecimal d) throws Exception {
-        if (d.abs().min(BigDecimal.ONE) == BigDecimal.ONE) {
-            throw new Exception("Error: cannot calculate arccos(" + d + ")");
-        } else {
-            return new BigDecimal(Math.acos(d.doubleValue()));
-        }
+//        if (d.abs().min(BigDecimal.ONE) == BigDecimal.ONE) {
+//            throw new Exception("Error: cannot calculate arccos(" + d + ")");
+//        } else {
+//            return new BigDecimal(Math.acos(d.doubleValue()));
+//        }
+        return BigDecimalMath.acos(d);
     }
     static BigDecimal calculateATan(BigDecimal d) throws Exception {
-        return new BigDecimal(Math.atan(d.doubleValue()));
+        //return new BigDecimal(Math.atan(d.doubleValue()));
+        return BigDecimalMath.atan(d);
     }
 }
