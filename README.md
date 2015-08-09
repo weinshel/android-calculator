@@ -2,7 +2,7 @@
 
 An easy to use calculator with history and helpful error checking.
 
-<img src="/blob/master/screenshot.png" alt="Screenshot" height="400">
+<img src="screenshot.png" alt="Screenshot" height="400">
 
 Features:
 
