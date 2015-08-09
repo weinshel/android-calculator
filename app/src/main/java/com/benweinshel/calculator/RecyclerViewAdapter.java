@@ -34,7 +34,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         mDataset = myDataset;
     }
 
-    // Create new views (invoked by the laout manager)
+    // Create new views (invoked by the layout manager)
     @Override
     public RecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view

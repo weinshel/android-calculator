@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="3dp">
+
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/text_input"
         style="@style/historyInputTheme"
-        android:layout_alignBaseline="@+id/text_result"/>
+        android:layout_alignParentLeft="true" />
+
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/text_result"
         style="@style/historyResultTheme"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_toRightOf="@+id/text_input"
-        android:layout_toEndOf="@+id/text_input"/>
+        android:layout_below="@+id/text_input"
+        android:layout_alignParentLeft="true"/>
 
     <!--<android.support.v7.widget.CardView-->
     <!--xmlns:card_view="http://schemas.android.com/apk/res-auto"-->

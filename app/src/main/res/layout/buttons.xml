@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@color/button_background">
+    android:layout_gravity="bottom"
+    android:background="@color/button_background"
+    style="@style/button_group">
 
     <!-- Row 6 -->
     <LinearLayout
@@ -21,7 +23,9 @@
             android:layout_weight="1"
             android:onClick="leftPressed"
             android:src="@drawable/ic_navigation_arrow_back"
-            android:contentDescription="@string/button_left"/>
+            android:contentDescription="@string/button_left"
+            android:longClickable="true"
+            />
 
         <ImageButton
             android:id="@+id/button_right"
@@ -31,7 +35,9 @@
             android:layout_weight="1"
             android:onClick="rightPressed"
             android:src="@drawable/ic_navigation_arrow_forward"
-            android:contentDescription="@string/button_right"/>
+            android:contentDescription="@string/button_right"
+            android:longClickable="true"
+            />
 
 
         <ImageButton
@@ -40,7 +46,7 @@
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:onClick="delPressed"
+            android:longClickable="true"
             android:src="@drawable/ic_content_backspace"
             android:contentDescription="@string/button_del"/>
     </LinearLayout>
