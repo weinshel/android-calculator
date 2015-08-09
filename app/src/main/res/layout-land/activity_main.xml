@@ -11,13 +11,10 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://schemas.android.com/apk/res-auto">
 
-
-
-
     <!-- Recycler View-->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/my_recycler_view"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/result_background"
         android:elevation="4dp"
@@ -44,9 +41,11 @@
         android:hint="@string/input_text"
         android:inputType="textNoSuggestions"
         style="@style/inputTheme"
+        android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/buttons"
+        android:layout_toStartOf="@+id/buttons"
         android:paddingBottom="@dimen/input_margin_vertical"
         android:paddingTop="@dimen/input_margin_vertical"
         android:paddingRight="@dimen/input_margin_horizontal"
