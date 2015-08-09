@@ -248,7 +248,7 @@ class Maths {
 
         if (stack.size() == 1) {
             BigDecimal result = stack.pop();
-            BigDecimal roundedResult = result.round(MathContext.DECIMAL64);
+            BigDecimal roundedResult = result.round(MathContext.DECIMAL32);
             return result.toString();
         }
         else {
